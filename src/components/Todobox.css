@@ -1,7 +1,40 @@
-.todo-box{
-
+.todo-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  font-size: 0.85em;
+  border-bottom: 1px solid rgb(0, 0, 0, 0.25);
 }
 
-.todo-box-left{
-    
+.todo-box:last-child {
+  border: none;
+}
+
+.todo-box-left {
+  max-width: 250px;
+}
+
+.todo-box-left p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.todo-box-right {
+}
+
+.todo-box-right input {
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 500px) {
+  .todo-box {
+    font-size: 0.75em;
+  }
+
+  .todo-box-left {
+    max-width: 200px;
+  }
 }
