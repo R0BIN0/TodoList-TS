@@ -1,24 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
+
 import './App.css';
+import Todobox from './components/Todobox';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="global-container">
+      <h1>La plus belles des Todo</h1>
+      <div className="input-container">
+        <input type="text" className="input-txt" />
+      </div>
+      <div className="todo-container">
+        <div className="todo-box-container">
+          <h2>Tâches à réaliser</h2>
+          <Todobox />
+        </div>
+        <div className="todo-box-container">
+          <h2>Tâches réalisées</h2>
+
+          <Todobox />
+        </div>
+      </div>
+
     </div>
   );
 }

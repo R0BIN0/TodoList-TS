@@ -1,38 +1,72 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*, ::before, ::after{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body{
+  background-color: hsl(0, 0%, 90%);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.global-container{
+  width: calc(100% - 2rem);
+  margin: 0 auto;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-flow: column nowrap;
+  padding-top: 8rem;
 }
 
-.App-link {
-  color: #61dafb;
+.global-container h1{
+  font-size: 2.75em;
+  margin-bottom: 1rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.input-container{
+  width: 100%;
+  max-width: 600px;
 }
+
+.input-txt{
+  border: 1px solid hsl(0, 0%, 80%);
+  width: 100%;
+  height: 100%;
+  padding: .5rem;
+  border-radius: 7px;
+}
+
+.todo-container{
+  padding-top: 4rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.todo-box-container h2{
+  width: 100%;
+  padding: .75rem 0 .75rem 1rem;
+  font-size: 1.1em;
+  border-bottom: 1px solid rgb(0, 0, 0, .25);
+}
+
+.todo-box-container{
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  min-height: 500px;
+  margin: 0 .5rem;
+  background-color: white;
+}
+
+
+
+
+
