@@ -1,16 +1,20 @@
-import {FC} from "react";
+import {FC, useState} from "react";
 import "./Todobox.css"
 
 import { TodoObj } from "../App";
 
 type Props = {
     item: TodoObj
-    updateTodo: (id: string) => void;
+    updateTodo: (item: string, checked: boolean) => void;
 }
 
 
 
+
+
 const Todobox:FC<Props> = ({item, updateTodo}) => {
+
+
   return (
     <div className="todo-box">
       <div className="todo-box-left">
@@ -19,7 +23,7 @@ const Todobox:FC<Props> = ({item, updateTodo}) => {
       <div className="todo-box-right">
         <label htmlFor="done"></label>
 
-        <input type="checkbox" id="done" />
+        <input onChange={(e) => updateTodo(item.id, e.target.checked)} type="checkbox" checked={item.status ? true : false}  id="done" />
       </div>
     </div>
   );

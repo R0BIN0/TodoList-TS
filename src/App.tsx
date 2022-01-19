@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Todobox from "./components/Todobox";
 import { v4 as uuidv4 } from "uuid";
-// import { useHistory } from 'react-router-dom';
 
 export type TodoObj = {
   id: string;
@@ -12,8 +11,6 @@ export type TodoObj = {
 
 function App() {
   const [keyword, setKeyword] = useState<string>("");
-  console.log(keyword);
-
   const [displayArr, setDisplayArr] = useState<TodoObj[]>([]);
   console.log(displayArr);
 
@@ -41,7 +38,23 @@ function App() {
     setDisplayArr([...displayArr, newObj]);
   };
 
-  const updateTodo = (id: string): void => {};
+  const updateTodo = (id: string, checked: boolean): void => {
+    setDisplayArr((prev) => {
+      const goodObj = prev.findIndex((el) => el.id === id);
+      const newObj = {...prev[goodObj], status: checked}
+      prev.splice(goodObj, 1, newObj)
+      
+      return [...prev]
+
+    });
+  };
+
+  // Fonction Delete !
+
+  // const updateTodo = (id: string): void => {
+  //   const newArr = displayArr.filter((item: TodoObj) => item.id !== id)
+  //   setDisplayArr(newArr)
+  // };
 
   return (
     <div className="global-container">
@@ -58,12 +71,19 @@ function App() {
         <div className="todo-box-container">
           <h2>Tâches à réaliser</h2>
 
-          {displayArr.map((item: TodoObj) => (
-            <Todobox key={item.id} item={item} updateTodo={updateTodo} />
-          ))}
+          {displayArr
+            .filter((item: TodoObj) => !item.status)
+            .map((item: TodoObj) => (
+              <Todobox key={item.id} item={item} updateTodo={updateTodo} />
+            ))}
         </div>
         <div className="todo-box-container">
           <h2>Tâches réalisées</h2>
+          {displayArr
+            .filter((item: TodoObj) => item.status)
+            .map((item: TodoObj) => (
+              <Todobox key={item.id} item={item} updateTodo={updateTodo} />
+            ))}
         </div>
       </div>
     </div>
