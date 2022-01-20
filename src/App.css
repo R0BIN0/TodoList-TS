@@ -25,9 +25,21 @@ body {
   text-align: center;
 }
 
-.global-container h1 {
+.title-global-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.title-global-container h1 {
   font-size: 2.75em;
-  margin-bottom: 1rem;
+  margin-right: 0.5rem;
+}
+
+.title-global-container img {
+  width: 40px;
+  margin-left: 0.5rem;
 }
 
 .input-container {
@@ -43,19 +55,25 @@ body {
   width: 100%;
   height: 40px;
   border: none;
-  padding: 0 .5rem;
+  padding: 0 0.5rem;
   outline: none;
   cursor: pointer;
 }
 
-.input-container button{
+.input-container button {
   height: 40px;
   width: 40px;
-  background: rgb(184, 71, 71);
+  background: hsl(0, 100%, 65%);
   outline: none;
   border: none;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.input-container button img {
+  width: 1rem;
 }
 
 .todo-container {
@@ -80,7 +98,7 @@ body {
 .todo-box-container {
   width: 100%;
   max-width: 500px;
-  min-height: 500px;
+  min-height: 600px;
   margin: 0 auto;
   margin: 1rem;
   background-color: white;

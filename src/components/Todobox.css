@@ -22,11 +22,31 @@
 }
 
 .todo-box-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .todo-box-right input {
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.todo-box-right .delete-btn {
+  font-size: 0.8em;
+  margin-left: 0.5rem;
+  background-color: hsl(0, 100%, 65%);
+  outline: none;
+  cursor: pointer;
+  color: white;
+  font-weight: 700;
+  border: none;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (max-width: 500px) {

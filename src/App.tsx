@@ -1,7 +1,16 @@
-import { useEffect, useState } from "react";
-import "./App.css";
+// General
+import { FormEvent, useEffect, useState } from "react";
 import Todobox from "./components/Todobox";
 import { v4 as uuidv4 } from "uuid";
+
+// IMG
+import searchSvg from "./assets/svg/Search.svg";
+import kappaImg from "./assets/img/kappa.png";
+
+// Styles
+import "./App.css";
+
+// Types
 
 export type TodoObj = {
   id: string;
@@ -12,7 +21,6 @@ export type TodoObj = {
 function App() {
   const [keyword, setKeyword] = useState<string>("");
   const [displayArr, setDisplayArr] = useState<TodoObj[]>([]);
-  console.log(displayArr);
 
   useEffect(() => {
     let initialLS: TodoObj[] = [];
@@ -28,7 +36,9 @@ function App() {
     return localStorage.setItem("todo", JSON.stringify(displayArr));
   }, [displayArr]);
 
-  const createTodo = (txt: string): void => {
+  const createTodo = (txt: string, e: FormEvent): void => {
+    e.preventDefault();
+
     const newObj: TodoObj = {
       id: uuidv4(),
       txt: txt,
@@ -36,37 +46,44 @@ function App() {
     };
 
     setDisplayArr([...displayArr, newObj]);
+    setKeyword("");
   };
 
   const updateTodo = (id: string, checked: boolean): void => {
     setDisplayArr((prev) => {
-      const goodObj = prev.findIndex((el) => el.id === id);
-      const newObj = {...prev[goodObj], status: checked}
-      prev.splice(goodObj, 1, newObj)
-      
-      return [...prev]
+      const indexObj = prev.findIndex((el) => el.id === id);
+      const newObj = { ...prev[indexObj], status: checked };
+      prev.splice(indexObj, 1, newObj);
 
+      return [...prev];
     });
   };
 
-  // Fonction Delete !
-
-  // const updateTodo = (id: string): void => {
-  //   const newArr = displayArr.filter((item: TodoObj) => item.id !== id)
-  //   setDisplayArr(newArr)
-  // };
+  const deleteTodo = (id: string): void => {
+    const newArr = displayArr.filter((item: TodoObj) => item.id !== id);
+    setDisplayArr(newArr);
+  };
 
   return (
     <div className="global-container">
-      <h1>La plus belles des Todo ❤️</h1>
-      <div className="input-container">
+      <div className="title-global-container">
+        <h1>La plus belle des Todo</h1>
+        <img src={kappaImg} alt="Kappa" />
+      </div>
+      <form
+        onSubmit={(e) => createTodo(keyword, e)}
+        className="input-container"
+      >
         <input
           type="text"
           className="input-txt"
+          value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
         />
-        <button onClick={() => createTodo(keyword)}>L</button>
-      </div>
+        <button type="submit">
+          <img src={searchSvg} alt="icône de loupe" />
+        </button>
+      </form>
       <div className="todo-container">
         <div className="todo-box-container">
           <h2>Tâches à réaliser</h2>
@@ -74,7 +91,12 @@ function App() {
           {displayArr
             .filter((item: TodoObj) => !item.status)
             .map((item: TodoObj) => (
-              <Todobox key={item.id} item={item} updateTodo={updateTodo} />
+              <Todobox
+                key={item.id}
+                item={item}
+                updateTodo={updateTodo}
+                deleteTodo={deleteTodo}
+              />
             ))}
         </div>
         <div className="todo-box-container">
@@ -82,7 +104,12 @@ function App() {
           {displayArr
             .filter((item: TodoObj) => item.status)
             .map((item: TodoObj) => (
-              <Todobox key={item.id} item={item} updateTodo={updateTodo} />
+              <Todobox
+                key={item.id}
+                item={item}
+                updateTodo={updateTodo}
+                deleteTodo={deleteTodo}
+              />
             ))}
         </div>
       </div>
