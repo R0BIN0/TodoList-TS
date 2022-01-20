@@ -24,7 +24,7 @@ const Todobox: FC<Props> = ({ item, updateTodo, deleteTodo }) => {
         <input
           onChange={(e) => updateTodo(item.id, e.target.checked)}
           type="checkbox"
-          checked={item.status ? true : false}
+          checked={item.status}
           id="done"
         />
         <button onClick={() => deleteTodo(item.id)} className="delete-btn">

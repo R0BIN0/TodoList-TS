@@ -50,13 +50,7 @@ function App() {
   };
 
   const updateTodo = (id: string, checked: boolean): void => {
-    setDisplayArr((prev) => {
-      const indexObj = prev.findIndex((el) => el.id === id);
-      const newObj = { ...prev[indexObj], status: checked };
-      prev.splice(indexObj, 1, newObj);
-
-      return [...prev];
-    });
+    return setDisplayArr((prev) => prev.map(el => el.id === id ? { ...el, status: checked } : el));
   };
 
   const deleteTodo = (id: string): void => {
